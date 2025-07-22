@@ -32,6 +32,10 @@ class Birthday:
             self.__day = day
     # end set_day
 
+    def set_month(self, month):
+        if month > 0 and month < 12:
+            self.__month = month
+
     # Accessor for __month
     def get_month(self):
         return self.__month
@@ -39,15 +43,34 @@ class Birthday:
     # Accessor for __day
     def get_day(self):
         return self.__day
+    
+    def day_in_year(self, month, day):
+        count = 0
+        for i in range(month - 1):
+            count+= Birthday.days_in_month[i]
+        return count + day
 
     # Compute days to birthday
-    def days_until(self):
+    def days_until(self, day, month):
         # obtain today's date
         # extract month and day
         # subtract from birthday
         # return # of days
         today = datetime.today()
         # COMPLETE THIS FOR YOUR ASSIGNMENT
+        today_day = today.day
+        today_month = today.month
+        today_num = self.day_in_year(today.month, today.day)
+        bday_num = self.day_in_year(self.__month, self.__day)
+
+        days = ""
+        if bday_num > today_num:
+            days = bday_num - today_num
+        else:
+            days = 365 - today_num + bday_num
+        return days
+
+
         
     def day_in_year(self, month, day):
         """calculates the day number within the year corresponding to a given 
@@ -66,3 +89,6 @@ demo = Birthday(6,29)
 
 print(demo.day_in_year(6,29)) # d_b
 print(demo.day_in_year(4,29)) # d_t
+ 
+demo2 = Birthday(1, 23)
+print(demo2.days_until(1, 23))

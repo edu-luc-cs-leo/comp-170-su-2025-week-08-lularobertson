@@ -11,7 +11,7 @@ class Person:
         the corresponding mutator methods."""
         self.first_name = first_name
         self.last_name = last_name
-        self.birthday = Birthday
+        self.birthday = None
         self.city = None
 
     def introduce(self):
@@ -25,8 +25,8 @@ class Person:
         self._birthday = Birthday(month, day)
 
     def say_birthday(self):
-        day = self.birthday.day
-        month_number = self.birthday.month
+        day = self._birthday.get_day()
+        month_number = self._birthday.get_month()
         month = self.get_month(month_number)
         suffix = self.get_suffix(day)
         return f"{day}{suffix} of {month}"
@@ -54,6 +54,15 @@ class Person:
         """String representation for the object"""
         return f"[ {self.first_name} {self.last_name}]"
     
-    
+    def __lt__(self, other) -> bool:
+        is_less = False
+        if self.first_name < other.first_name:
+            is_less = True
+        else:
+            is_less = False
+        return is_less
 
 
+p1 = Person("Alex", "Petrongelli")
+p1.set_birthday(9, 3)
+print(p1.say_birthday())
