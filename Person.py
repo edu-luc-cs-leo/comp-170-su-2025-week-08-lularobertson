@@ -11,7 +11,7 @@ class Person:
         the corresponding mutator methods."""
         self.first_name = first_name
         self.last_name = last_name
-        self.birthday = None
+        self.birthday = Birthday
         self.city = None
 
     def introduce(self):
@@ -23,6 +23,20 @@ class Person:
     def set_birthday(self, month, day):
         """Mutator for birthday. Uses our very own Birthday class."""
         self._birthday = Birthday(month, day)
+
+    def say_birthday(self):
+        day = self.birthday.day
+        month_number = self.birthday.month
+        month = self.get_month(month_number)
+        suffix = self.get_suffix(day)
+        return f"{day}{suffix} of {month}"
+    
+    def get_month(self, month):
+        month_word = ""
+        return {1: "January", 2: "February", 3: "March", 4: "April", 5: "May", 6: "June", 7: "July", 8: "August", 9: "September", 10: "October", 11: "November", 12: "December"}.get(month)
+    
+    def get_suffix(self, day):
+        return {1: "st", 2: "nd", 3: "rd"}.get(day % 10, "th")
 
     def set_city(self, city):
         """Mutator for city."""
@@ -39,3 +53,7 @@ class Person:
     def __str__(self):
         """String representation for the object"""
         return f"[ {self.first_name} {self.last_name}]"
+    
+    
+
+
