@@ -26,8 +26,8 @@ class Person:
 
     def say_birthday(self):
         day = self._birthday.get_day()
-        month_number = self._birthday.get_month()
-        month = self.get_month(month_number)
+        month_number = self._birthday.get_month() # accessor
+        month = self.get_month(month_number) #accessor
         suffix = self.get_suffix(day)
         return f"{day}{suffix} of {month}"
     
@@ -66,3 +66,16 @@ class Person:
 p1 = Person("Alex", "Petrongelli")
 p1.set_birthday(9, 3)
 print(p1.say_birthday())
+
+
+"""
+Reflection:
+
+Our code for both SuperAles and SuperVehicles is basically the same. I didn't include many comments on this assignment
+because I thought it was pretty straight foreword. I didn't include any testing code because I guess I didn't think of that,
+and also writing tests for objects kind of confuses me. Including with this assignment, the testing code I wrote was hard.
+
+I'm still working on writing the methods and all the things correctly. It seems less intuitive now with the methods and mutators and accessors.
+It's hard to translate what I want the computer to do to actual words and functions.
+
+"""

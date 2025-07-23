@@ -63,11 +63,11 @@ class Birthday:
         today_num = self.day_in_year(today.month, today.day)
         bday_num = self.day_in_year(self.__month, self.__day)
 
-        days = ""
+        days = "" #string
         if bday_num > today_num:
             days = bday_num - today_num
         else:
-            days = 365 - today_num + bday_num
+            days = 365 - today_num + bday_num  # if bday is next year
         return days
 
 
